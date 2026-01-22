@@ -1,0 +1,9 @@
+requests
+beautifulsoup4
+streamlit
+sentence-transformers
+faiss-cpu
+transformers
+torch
+langchain-text-splitters
+sentencepiece
