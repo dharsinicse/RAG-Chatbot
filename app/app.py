@@ -155,6 +155,12 @@ def initialize_system():
     index_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "embeddings", "faiss_index.bin")
     chunks_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "embeddings", "chunks.pkl")
     
+    # Ensure directories exist for deployment
+    data_dir = os.path.dirname(DATA_PATH)
+    embeddings_dir = os.path.dirname(index_path)
+    if not os.path.exists(data_dir): os.makedirs(data_dir)
+    if not os.path.exists(embeddings_dir): os.makedirs(embeddings_dir)
+    
     index, chunks = load_existing_index(index_path, chunks_path)
     model = SentenceTransformer("all-mpnet-base-v2")
     
@@ -272,8 +278,9 @@ with st.sidebar:
 
 
 if not index:
-    st.warning("No Knowledge Base loaded.")
-    if st.button("Add your first website"):
+    st.info("👋 Welcome! Your knowledge base is currently empty.")
+    st.markdown("To get started, please add a website URL so the chatbot can learn about its content.")
+    if st.button("Add your first website", use_container_width=True):
         add_website_dialog()
     st.stop()
 
