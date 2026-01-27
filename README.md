@@ -1,31 +1,44 @@
-# RAG Website Chatbot 🤖
+# 🤖 RAG-powered Website Chatbot
+A high-performance Retrieval-Augmented Generation (RAG) chatbot built with Streamlit and FLAN-T5. This assistant can ingest entire websites through recursive crawling, process the information using a persistent FAISS vector store and provide instant, accurate answers through a professional, minimalist interface.
 
-A **Retrieval-Augmented Generation (RAG) chatbot** that answers user questions based on website content.  
-This project demonstrates how to ingest website data, convert it into embeddings, store it in a vector database, and retrieve relevant information to generate answers using a lightweight language model.
+## Key Features
+**Instant Streaming Responses**
+Experience ChatGPT-like interactions with word-by-word response streaming. No more waiting—answers appear as soon as the model begins generating.
 
----
+**Smart Recursive Web Crawling**
+Don't just scrape a single page—ingest a whole domain. The bot can automatically follow internal links (up to depth 2) to build a comprehensive knowledge base about your target website.
 
-## 🚀 Project Overview
+**Professional Neutral Interface**
+A distraction-free aesthetic designed with a sleek dark-grey palette (#1e1e1e), glassmorphism containers, and modern typography (Outfit Google Font).
 
-This chatbot follows the **RAG architecture**:
+## Strict Relevance & Guardrails
+Context Lock: The AI is strictly forbidden from using outside general knowledge. It only answers using your provided data.
+Similarity Check: Off-topic questions are caught by a similarity threshold and politely declined to ensure accuracy.
+Direct Answers: Optimized to skip greetings and filler, going straight to the facts.
 
-1. **Website Content Ingestion**
-2. **Text Chunking**
-3. **Embedding Generation**
-4. **Vector Storage using FAISS**
-5. **Context Retrieval**
-6. **Answer Generation using LLM**
+## Tech Stack
+Frontend: Streamlit (Custom CSS)
+AI Model: Google FLAN-T5 Large
+Vector Store: FAISS (with Persistence)
+Embeddings: Sentence Transformers (all-mpnet-base-v2)
+Scraping: Requests & BeautifulSoup4
 
-The project is built incrementally and currently represents a **working MVP**.
+## How to Use
+Add Website: Click the "Add Website" button in the sidebar.
+Choose Depth: Select "Single Page" or "Full Website" to crawl the domain.
+Chat: Once the knowledge base is updated, ask anything about the website!
+History: Your chats are saved in the sidebar for easy reference.
 
----
-
-## 🛠️ Tech Stack
-
-- **Python 3.13**
-- **LangChain Text Splitters**
-- **Sentence Transformers**
-- **FAISS (Vector Database)**
-- **HuggingFace Transformers**
-- **PowerShell / VS Code**
-- **Git & GitHub**
+## Project Structure
+text
+├── app/
+│   └── app.py
+├── embeddings/
+│   └── vector_store.py
+├── ingest/
+│   └── web_loader.py
+├── llm/
+│   └── rag_chain.py
+├── utils/
+│   └── text_processing.py
+└── requirements.txt
